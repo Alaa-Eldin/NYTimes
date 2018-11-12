@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Name</key>
+		<string>All Sections</string>
+		<key>key</key>
+		<string>all-sections</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Opinion</string>
+		<key>key</key>
+		<string>Opinion</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Arts</string>
+		<key>key</key>
+		<string>Arts</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Automobiles</string>
+		<key>key</key>
+		<string>Automobiles</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Blogs</string>
+		<key>key</key>
+		<string>Blogs</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Books</string>
+		<key>key</key>
+		<string>Books</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Business Day</string>
+		<key>key</key>
+		<string>Business Day</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Education</string>
+		<key>key</key>
+		<string>Education</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Fashion And Style</string>
+		<key>key</key>
+		<string>Fashion &amp; Style</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Food</string>
+		<key>key</key>
+		<string>Food</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Health</string>
+		<key>key</key>
+		<string>Health</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Job Market</string>
+		<key>key</key>
+		<string>Job Market</string>
+	</dict>
+</array>
+</plist>
