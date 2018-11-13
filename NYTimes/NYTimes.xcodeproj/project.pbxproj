@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA357664219A63F2000ACC10 /* AlertsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA357663219A63F2000ACC10 /* AlertsViews.swift */; };
 		BAE0A0A32198729F005F47DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE0A0A22198729F005F47DE /* AppDelegate.swift */; };
 		BAE0A0AB2198729F005F47DE /* NYTimes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAE0A0A92198729F005F47DE /* NYTimes.xcdatamodeld */; };
 		BAE0A0AD219872A0005F47DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAE0A0AC219872A0005F47DE /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA357663219A63F2000ACC10 /* AlertsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViews.swift; sourceTree = "<group>"; };
 		BAE0A09F2198729F005F47DE /* NYTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE0A0A22198729F005F47DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAE0A0AA2198729F005F47DE /* NYTimes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NYTimes.xcdatamodel; sourceTree = "<group>"; };
@@ -126,12 +128,12 @@
 				BAE0A0E42198734A005F47DE /* RootWireframe.swift */,
 				BAE0A0A22198729F005F47DE /* AppDelegate.swift */,
 				BAE0A0E821990727005F47DE /* WebservicesConstants.swift */,
+				BA357663219A63F2000ACC10 /* AlertsViews.swift */,
 				BAE0A0D3219872C6005F47DE /* NewsFeed */,
 				BAE0A0AC219872A0005F47DE /* Assets.xcassets */,
 				BAE0A0AE219872A0005F47DE /* LaunchScreen.storyboard */,
 				BAE0A0B1219872A0005F47DE /* Info.plist */,
 				BAE0A0A92198729F005F47DE /* NYTimes.xcdatamodeld */,
-				BAE0A0EC219913DE005F47DE /* NewsFeedSectionsManager.swift */,
 			);
 			path = NYTimes;
 			sourceTree = "<group>";
@@ -175,6 +177,7 @@
 		BAE0A0EE2199140C005F47DE /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				BAE0A0EC219913DE005F47DE /* NewsFeedSectionsManager.swift */,
 				BAE0A0E621987EF5005F47DE /* Sections.plist */,
 			);
 			path = Sections;
@@ -318,6 +321,7 @@
 				BAE0A0E121987314005F47DE /* Contracats.swift in Sources */,
 				BAE0A0DF21987314005F47DE /* NewsFeedConstants.swift in Sources */,
 				BAE0A0DD21987314005F47DE /* NewsFeedPresenter.swift in Sources */,
+				BA357664219A63F2000ACC10 /* AlertsViews.swift in Sources */,
 				BAE0A0DE21987314005F47DE /* NewsFeedView.swift in Sources */,
 				BAE0A0E52198734A005F47DE /* RootWireframe.swift in Sources */,
 				BAE0A0DC21987314005F47DE /* NewsFeedCell.swift in Sources */,

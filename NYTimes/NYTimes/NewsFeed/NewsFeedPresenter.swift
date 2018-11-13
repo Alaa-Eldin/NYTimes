@@ -18,16 +18,23 @@ class NewsFeedPresenter {
     lazy var sections = {
         return NewsFeedSectionsManager().newsFeedSections
     }
-
-    var newsFeedItems:[NewsFeedItem]?
     
     // MARK: - Operational
+    func fetchNewsFeed(){
+        let allSections = sections()?[0]
+        if let _ = allSections {
+            interactor.fetchNewsFeedForPeriod(period: .Day, section: allSections!.key)
+        }
+    }
 }
 
 // MARK: - Interactor to Presenter Interface
 extension NewsFeedPresenter: NewsFeedInteractorToPresenterInterface {
     func fetchNewsFailedWithError(fetchError: NewsFeedFetchError) {
-        
+        view.showPopup(title: "Ops!", message: "Something went wrong, please try again", cancelTitle: "Ok") {
+            //try to fetch again
+            self.fetchNewsFeed()
+        }
     }
     
     func fetchNewsSuccess(newsFeedEntity: NewsFeedEntity) {
@@ -40,24 +47,14 @@ extension NewsFeedPresenter: NewsFeedInteractorToPresenterInterface {
 // MARK: - View to Presenter Interface
 extension NewsFeedPresenter: NewsFeedViewToPresenterInterface {
     func viewDidLoad(){
-        let allSections = sections()?[0]
-        if let _ = allSections {
-            interactor.fetchNewsFeedForPeriod(period: .Day, section: allSections!.key)
-        }
+        fetchNewsFeed()
     }
 }
+
 
 // MARK: - Wireframe to Presenter Interface
 extension NewsFeedPresenter: NewsFeedWireframeToPresenterInterface {
         func set(delegate newDelegate: NewsFeedDelegate?) {
                 delegate = newDelegate
         }
-}
-
-struct NewsFeedItem {
-    let title:String
-    let published_date:String
-    let id:Int
-    let abstract:String
-    let thumnbailURL:String?
 }
