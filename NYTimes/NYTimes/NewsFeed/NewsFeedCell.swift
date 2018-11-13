@@ -18,6 +18,11 @@ class NewsFeedCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        newsImageView.layer.borderWidth = 1
+        newsImageView.layer.masksToBounds = false
+        newsImageView.layer.borderColor = UIColor.lightGray.cgColor
+        newsImageView.layer.cornerRadius = newsImageView.frame.height/2
+        newsImageView.clipsToBounds = true
     }
 
 }

@@ -102,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA357665219A69DD000ACC10 /* Protocol Oriented Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BA357663219A63F2000ACC10 /* AlertsViews.swift */,
+			);
+			path = "Protocol Oriented Helpers";
+			sourceTree = "<group>";
+		};
 		BAE0A0962198729F005F47DE = {
 			isa = PBXGroup;
 			children = (
@@ -128,8 +136,8 @@
 				BAE0A0E42198734A005F47DE /* RootWireframe.swift */,
 				BAE0A0A22198729F005F47DE /* AppDelegate.swift */,
 				BAE0A0E821990727005F47DE /* WebservicesConstants.swift */,
-				BA357663219A63F2000ACC10 /* AlertsViews.swift */,
 				BAE0A0D3219872C6005F47DE /* NewsFeed */,
+				BA357665219A69DD000ACC10 /* Protocol Oriented Helpers */,
 				BAE0A0AC219872A0005F47DE /* Assets.xcassets */,
 				BAE0A0AE219872A0005F47DE /* LaunchScreen.storyboard */,
 				BAE0A0B1219872A0005F47DE /* Info.plist */,
