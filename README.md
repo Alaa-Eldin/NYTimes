@@ -2,6 +2,7 @@
 Application to fetch NYTimes news using VIPER
 
 # Notes
+- The application is being developed on Xcode 10.0, if you run on the same version you should not get any warnings.
 - There are no third parties used just for sake of showing off the ability to replace hundereds of unnecessary lines of codes.
 - I did not consider the connectivity check before requesting the APIs for time limitation reasons.
 - I added Property List file to add all sections available or remove existing ones easily from a readble file.
