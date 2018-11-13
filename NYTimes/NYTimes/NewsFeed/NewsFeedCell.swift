@@ -24,5 +24,4 @@ class NewsFeedCell: UITableViewCell {
         newsImageView.layer.cornerRadius = newsImageView.frame.height/2
         newsImageView.clipsToBounds = true
     }
-
 }

@@ -25,17 +25,32 @@ struct NewsFeedData:Codable {
     // we chose to only show image type and we select the square 320 dimension if exists
     var thumbnailURL:String? {
         get{
-            guard media != nil, media!.count > 0 else {
+            let thumnailMedia = fetchMediaInfo(format: "square320")
+            guard thumnailMedia != nil else{
                 return nil
             }
-            let firstMediaInfo = media![0]
-            let metadata = firstMediaInfo.metadata
-            guard firstMediaInfo.type == "image", metadata != nil , metadata!.count > 0 else {
-                return nil
-            }
-            let thumnailMedia = metadata!.filter {$0.format == "square320"}
-            return thumnailMedia[0].url
+            return thumnailMedia!.url
         }
+    }
+    var jumboImageURL:String? {
+        get{
+            let thumnailMedia = fetchMediaInfo(format: "Jumbo")
+            guard thumnailMedia != nil else{
+                return nil
+            }
+            return thumnailMedia!.url
+        }
+    }
+    func fetchMediaInfo (format:String)-> NewsFeedMediaInfo? {
+        guard media != nil, media!.count > 0 else {
+            return nil
+        }
+        let firstMediaInfo = media![0]
+        let metadata = firstMediaInfo.metadata
+        guard firstMediaInfo.type == "image", metadata != nil , metadata!.count > 0 else {
+            return nil
+        }
+        return metadata!.filter {$0.format == format}[0]
     }
 }
 

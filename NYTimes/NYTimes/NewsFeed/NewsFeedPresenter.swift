@@ -49,6 +49,10 @@ extension NewsFeedPresenter: NewsFeedViewToPresenterInterface {
     func viewDidLoad(){
         fetchNewsFeed()
     }
+    
+    func newsFeedSelected(selectedNewsFeed:NewsFeedData){
+        wireframe.navigateToNewsDetails(newsFeedData: selectedNewsFeed)
+    }
 }
 
 

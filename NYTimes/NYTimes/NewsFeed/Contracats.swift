@@ -19,7 +19,7 @@ protocol NewsFeedPresenterToInteractorInterface: class {
 
 // VIPER Interface for communication from Presenter -> Wireframe
 protocol NewsFeedPresenterToWireframeInterface: class {
-    
+    func navigateToNewsDetails(newsFeedData:NewsFeedData)
 }
 
 // VIPER Interface to the Module
@@ -36,6 +36,7 @@ protocol NewsFeedInteractorToPresenterInterface: class {
 // VIPER Interface for communication from View -> Presenter
 protocol NewsFeedViewToPresenterInterface: class {
     func viewDidLoad()
+    func newsFeedSelected(selectedNewsFeed:NewsFeedData)
 }
 
 // VIPER Interface for communication from Wireframe -> Presenter

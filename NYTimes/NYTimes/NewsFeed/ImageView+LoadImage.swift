@@ -12,6 +12,31 @@ extension UIImageView {
     var imageCache: NSCache<NSString, UIImage>  {//cashing fetched image
         return CasheManager.shared.imageCahser
     }
+    func loadImageUsingCache(withUrl urlString : String) {
+        let url = URL(string: urlString)
+        self.image = nil
+        
+        // check cached image
+        if let cachedImage = imageCache.object(forKey: urlString as NSString) {
+            self.image = cachedImage
+            return
+        }
+        
+        // if not, download image from url
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                if let image = UIImage(data: data!) {
+                    self.imageCache.setObject(image, forKey: urlString as NSString)
+                    self.image = image
+                }
+            }
+        }).resume()
+    }
     
     func loadImageUsingCache(withUrl urlString : String, cellIndexPathRow:Int) {
         let url = URL(string: urlString)
@@ -39,7 +64,6 @@ extension UIImageView {
                     self.image = image
                 }
             }
-            
         }).resume()
     }
     

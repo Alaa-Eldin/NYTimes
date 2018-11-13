@@ -12,7 +12,9 @@ class RootWireframe {
     var newsFeedWireframe:NewsFeedWireframe!
     
     func rootNavigationController()-> UINavigationController {
-        newsFeedWireframe = NewsFeedWireframe()
+        if newsFeedWireframe == nil {
+            newsFeedWireframe = NewsFeedWireframe()
+        }
         return newsFeedWireframe.moduleNavigationController
     }
 }

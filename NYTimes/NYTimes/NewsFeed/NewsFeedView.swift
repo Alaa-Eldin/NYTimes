@@ -58,6 +58,11 @@ extension NewsFeedView:UITableViewDataSource{
     }
 }
 extension NewsFeedView:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let newsFeedInfo = newsFeedsData[indexPath.row]
+        presenter.newsFeedSelected(selectedNewsFeed: newsFeedInfo)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 180.0
     }
