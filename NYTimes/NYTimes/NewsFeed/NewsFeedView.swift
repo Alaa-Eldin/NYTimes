@@ -41,8 +41,9 @@ extension NewsFeedView:UITableViewDataSource{
         let newsFeedInfo = newsFeedsData[indexPath.row]
         cell.newsTitleLabel.text = newsFeedInfo.title
         cell.newsDescriptionLabel.text = newsFeedInfo.abstract
+        cell.dateLabel.text = newsFeedInfo.published_date
         cell.newsImageView.tag = indexPath.row
-    
+        
         if let thumnailURL = newsFeedInfo.thumbnailURL {
             cell.newsImageView.loadImageUsingCache(withUrl: thumnailURL, cellIndexPathRow: indexPath.row)
         }
@@ -54,5 +55,10 @@ extension NewsFeedView:UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsFeedsData.count
+    }
+}
+extension NewsFeedView:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180.0
     }
 }
