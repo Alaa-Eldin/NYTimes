@@ -19,6 +19,12 @@ class NewsFeedView: UIViewController {
     
     func additionalViewSetup(){
         newsTableView.isHidden = true
+        setNYTimesLogoAsTitle()
+    }
+    
+    func setNYTimesLogoAsTitle(){
+        let logo = UIImage(named: "The_New_York_Times_small_logo")
+        self.navigationItem.titleView = UIImageView(image: logo)
     }
 }
 

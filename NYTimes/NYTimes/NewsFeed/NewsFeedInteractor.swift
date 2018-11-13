@@ -25,6 +25,7 @@ class NewsFeedInteractor {
 // MARK: - Presenter To Interactor Interface
 extension NewsFeedInteractor: NewsFeedPresenterToInteractorInterface {
     func fetchNewsFeedForPeriod(period:NewsPeriod, section:String){
+        //TODO: should check internet reachability and return fail if there is no internet connection
         guard let gitUrl = URL(string: APIsURLs.NYTimesAPIBaseURL +
             section + "/" + period.rawValue + ".json?" + APIsParamaeters.NYTimesAPIKey + "=" + APIsParamaeters.NYTimesAPIValue) else {
                 self.presenter.fetchNewsFailedWithError(fetchError: .Unexpected)

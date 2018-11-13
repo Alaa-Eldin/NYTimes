@@ -14,6 +14,7 @@
 		BA357677219A6DC4000ACC10 /* NewsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35766E219A6DC4000ACC10 /* NewsDetailsView.swift */; };
 		BA357678219A6DC4000ACC10 /* NewsDetailsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35766F219A6DC4000ACC10 /* NewsDetailsWireframe.swift */; };
 		BA35767A219A6E21000ACC10 /* NewsDetailsContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA357679219A6E21000ACC10 /* NewsDetailsContracts.swift */; };
+		BA35767C219A802C000ACC10 /* LoadingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35767B219A802C000ACC10 /* LoadingViews.swift */; };
 		BAE0A0A32198729F005F47DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE0A0A22198729F005F47DE /* AppDelegate.swift */; };
 		BAE0A0AB2198729F005F47DE /* NYTimes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAE0A0A92198729F005F47DE /* NYTimes.xcdatamodeld */; };
 		BAE0A0AD219872A0005F47DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAE0A0AC219872A0005F47DE /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		BA35766E219A6DC4000ACC10 /* NewsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsView.swift; sourceTree = "<group>"; };
 		BA35766F219A6DC4000ACC10 /* NewsDetailsWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsWireframe.swift; sourceTree = "<group>"; };
 		BA357679219A6E21000ACC10 /* NewsDetailsContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsContracts.swift; sourceTree = "<group>"; };
+		BA35767B219A802C000ACC10 /* LoadingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViews.swift; sourceTree = "<group>"; };
 		BAE0A09F2198729F005F47DE /* NYTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE0A0A22198729F005F47DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAE0A0AA2198729F005F47DE /* NYTimes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NYTimes.xcdatamodel; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				BA357663219A63F2000ACC10 /* AlertsViews.swift */,
+				BA35767B219A802C000ACC10 /* LoadingViews.swift */,
 			);
 			path = "Protocol Oriented Helpers";
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA35767C219A802C000ACC10 /* LoadingViews.swift in Sources */,
 				BAE0A0AB2198729F005F47DE /* NYTimes.xcdatamodeld in Sources */,
 				BAE0A0EB21990A24005F47DE /* NewsFeedEntity.swift in Sources */,
 				BA357677219A6DC4000ACC10 /* NewsDetailsView.swift in Sources */,

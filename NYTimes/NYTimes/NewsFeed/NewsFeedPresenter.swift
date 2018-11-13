@@ -23,6 +23,7 @@ class NewsFeedPresenter {
     func fetchNewsFeed(){
         let allSections = sections()?[0]
         if let _ = allSections {
+            //TODO:Should show loading indicator before start fetching
             interactor.fetchNewsFeedForPeriod(period: .Day, section: allSections!.key)
         }
     }
@@ -33,6 +34,7 @@ extension NewsFeedPresenter: NewsFeedInteractorToPresenterInterface {
     func fetchNewsFailedWithError(fetchError: NewsFeedFetchError) {
         view.showPopup(title: "Ops!", message: "Something went wrong, please try again", cancelTitle: "Ok") {
             //try to fetch again
+            //TODO:Should show loading indicator before start fetching
             self.fetchNewsFeed()
         }
     }
