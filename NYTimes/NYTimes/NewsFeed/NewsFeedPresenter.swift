@@ -18,8 +18,10 @@ class NewsFeedPresenter {
     lazy var sections = {
         return NewsFeedSectionsManager().newsFeedSections
     }
-    // MARK: - Operational
 
+    var newsFeedItems:[NewsFeedItem]?
+    
+    // MARK: - Operational
 }
 
 // MARK: - Interactor to Presenter Interface
@@ -29,10 +31,10 @@ extension NewsFeedPresenter: NewsFeedInteractorToPresenterInterface {
     }
     
     func fetchNewsSuccess(newsFeedEntity: NewsFeedEntity) {
-        
+        if let newsFeedData = newsFeedEntity.results {
+            view.showMostPopularNews(_newsFeedData:newsFeedData)
+        }
     }
-    
-
 }
 
 // MARK: - View to Presenter Interface
@@ -50,4 +52,12 @@ extension NewsFeedPresenter: NewsFeedWireframeToPresenterInterface {
         func set(delegate newDelegate: NewsFeedDelegate?) {
                 delegate = newDelegate
         }
+}
+
+struct NewsFeedItem {
+    let title:String
+    let published_date:String
+    let id:Int
+    let abstract:String
+    let thumnbailURL:String?
 }

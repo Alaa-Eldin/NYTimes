@@ -36,6 +36,7 @@ extension NewsFeedInteractor: NewsFeedPresenterToInteractorInterface {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
+        //use shared sesiion as it is a simple web service calling with default configuratins
         _ = session.dataTask(with: request as URLRequest) { data, response, error in
             guard let data = data else {
                 DispatchQueue.main.async {//call main thread to handle response
@@ -43,18 +44,19 @@ extension NewsFeedInteractor: NewsFeedPresenterToInteractorInterface {
                 }
                 return
             }
-            do {
+            do {//try to parse the response
                 let newsFeedEntity = try JSONDecoder().decode(NewsFeedEntity.self, from: data)
                 if let httpURLResponse = response as? HTTPURLResponse {
-                    if (httpURLResponse.statusCode == 400){
-                        DispatchQueue.main.async {
-                            self.presenter.fetchNewsFailedWithError(fetchError: .BadRequest)
+                    if (httpURLResponse.statusCode == 200){
+                        DispatchQueue.main.async {//call main thread to handle response
+                            self.presenter.fetchNewsSuccess(newsFeedEntity: newsFeedEntity)
                         }
-                        return
                     }
                 }
-                DispatchQueue.main.async {//call main thread to handle response
-                    self.presenter.fetchNewsSuccess(newsFeedEntity: newsFeedEntity)
+                else{
+                    DispatchQueue.main.async {//call main thread to handle response
+                        self.presenter.fetchNewsFailedWithError(fetchError: .BadRequest)
+                    }
                 }
             } catch let err {//This is where we catch the parsing error
                 DispatchQueue.main.async { //call main thread to handle response

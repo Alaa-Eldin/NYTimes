@@ -51,5 +51,5 @@ protocol NewsFeedNavigationInterface: class {
 
 // VIPER Interface for communication from Presenter -> View
 protocol NewsFeedPresenterToViewInterface: class {
-    
+    func showMostPopularNews(_newsFeedData:[NewsFeedData])
 }

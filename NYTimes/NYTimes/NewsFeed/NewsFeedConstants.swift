@@ -12,4 +12,5 @@ struct NewsFeedConstants {
     static let navigationControllerIdentifier = "NewsFeedNavigationController"
     static let storyboardIdentifier = "NewsFeed"
     static let viewIdentifier = "NewsFeedView"
+    static let newsFeedCellID = "NewsFeedCellID"
 }

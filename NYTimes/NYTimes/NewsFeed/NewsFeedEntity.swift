@@ -18,13 +18,31 @@ struct NewsFeedData:Codable {
     let title:String
     let published_date:String
     let id:Int
+    let abstract:String
     let media:[NewsFeedMedia]?
+    
+    // this is to fetch directly the thumnail we would like to use in our application
+    // we chose to only show image type and we select the square 320 dimension if exists
+    var thumbnailURL:String? {
+        get{
+            guard media != nil, media!.count > 0 else {
+                return nil
+            }
+            let firstMediaInfo = media![0]
+            let metadata = firstMediaInfo.metadata
+            guard firstMediaInfo.type == "image", metadata != nil , metadata!.count > 0 else {
+                return nil
+            }
+            let thumnailMedia = metadata!.filter {$0.format == "square320"}
+            return thumnailMedia[0].url
+        }
+    }
 }
 
 struct NewsFeedMedia:Codable {
     let type:String
     let metadata:[NewsFeedMediaInfo]?
-    
+  
     private enum CodingKeys : String, CodingKey {
         case  type, metadata = "media-metadata"
     }
