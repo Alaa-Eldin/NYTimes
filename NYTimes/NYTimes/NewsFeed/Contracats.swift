@@ -6,7 +6,6 @@
 //  Copyright © 2018 Alaa.Hamed. All rights reserved.
 //
 
-
 // Interface Abstraction for working with the VIPER Module
 protocol NewsFeed: class {
     var delegate: NewsFeedDelegate? { get set }
@@ -14,29 +13,28 @@ protocol NewsFeed: class {
 
 // VIPER Interface for communication from Presenter to Interactor
 protocol NewsFeedPresenterToInteractorInterface: class {
-    func fetchNewsFeedForPeriod(period:NewsPeriod, section:String)
+    func fetchNewsFeedForPeriod(period: NewsPeriod, section: String)
 }
 
 // VIPER Interface for communication from Presenter -> Wireframe
 protocol NewsFeedPresenterToWireframeInterface: class {
-    func navigateToNewsDetails(newsFeedData:NewsFeedData)
+    func navigateToNewsDetails(newsFeedData: NewsFeedData)
 }
 
 // VIPER Interface to the Module
 protocol NewsFeedDelegate: class {
-    
 }
 
 // VIPER Interface for communication from Interactor -> Presenter
 protocol NewsFeedInteractorToPresenterInterface: class {
-    func fetchNewsFailedWithError(fetchError:NewsFeedFetchError)
-    func fetchNewsSuccess(newsFeedEntity:NewsFeedEntity)
+    func fetchNewsFailedWithError(fetchError: NewsFeedFetchError)
+    func fetchNewsSuccess(newsFeedEntity: NewsFeedEntity)
 }
 
 // VIPER Interface for communication from View -> Presenter
 protocol NewsFeedViewToPresenterInterface: class {
     func viewDidLoad()
-    func newsFeedSelected(selectedNewsFeed:NewsFeedData)
+    func newsFeedSelected(selectedNewsFeed: NewsFeedData)
 }
 
 // VIPER Interface for communication from Wireframe -> Presenter
@@ -47,10 +45,9 @@ protocol NewsFeedWireframeToPresenterInterface: class {
 
 // VIPER Interface for manipulating the navigation of the view
 protocol NewsFeedNavigationInterface: class {
-    
 }
 
 // VIPER Interface for communication from Presenter -> View
 protocol NewsFeedPresenterToViewInterface: class, Popupable {
-    func showMostPopularNews(_newsFeedData:[NewsFeedData])
+    func showMostPopularNews(newsFeedData: [NewsFeedData])
 }

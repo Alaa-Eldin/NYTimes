@@ -24,14 +24,13 @@ extension NewsDetailsView: NewsDetailsNavigationInterface { }
 
 // MARK: - Presenter to View Interface
 extension NewsDetailsView: NewsDetailsPresenterToViewInterface {
-    func showNewsImageFrom(imageURL:String){
-        newsImageView.loadImageUsingCache(withUrl:imageURL)
+    func showNewsImageFrom(imageURL: String) {
+        newsImageView.loadImageUsingCache(withUrl: imageURL)
     }
-    func showNewsTitle(title:String){
+    func showNewsTitle(title: String) {
         newsTitleLabel.text = title
     }
-    func showNewsDetails(newsDetails:String){
+    func showNewsDetails(newsDetails: String) {
         newsDetailsTextView.text = newsDetails
     }
-    
 }

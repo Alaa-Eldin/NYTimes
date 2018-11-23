@@ -9,22 +9,18 @@ class NewsFeedPresenter {
     // MARK: - Instance Variables
     weak var delegate: NewsFeedDelegate?
     var moduleWireframe: NewsFeed {
-            get {
-                    let mw = (self.wireframe as? NewsFeed)!
-                    return mw
-            }
+            let wireframe = (self.wireframe as? NewsFeed)!
+            return wireframe
     }
-    
     lazy var sections = {
         return NewsFeedSectionsManager().newsFeedSections
     }
-    
     // MARK: - Operational
-    func fetchNewsFeed(){
+    func fetchNewsFeed() {
         let allSections = sections()?[0]
-        if let _ = allSections {
+        if  allSections != nil {
             //TODO:Should show loading indicator before start fetching
-            interactor.fetchNewsFeedForPeriod(period: .Day, section: allSections!.key)
+            interactor.fetchNewsFeedForPeriod(period: .day, section: allSections!.key)
         }
     }
 }
@@ -38,26 +34,22 @@ extension NewsFeedPresenter: NewsFeedInteractorToPresenterInterface {
             self.fetchNewsFeed()
         }
     }
-    
     func fetchNewsSuccess(newsFeedEntity: NewsFeedEntity) {
         if let newsFeedData = newsFeedEntity.results {
-            view.showMostPopularNews(_newsFeedData:newsFeedData)
+            view.showMostPopularNews(newsFeedData: newsFeedData)
         }
     }
 }
 
 // MARK: - View to Presenter Interface
 extension NewsFeedPresenter: NewsFeedViewToPresenterInterface {
-    func viewDidLoad(){
+    func viewDidLoad() {
         fetchNewsFeed()
     }
-    
-    func newsFeedSelected(selectedNewsFeed:NewsFeedData){
+    func newsFeedSelected(selectedNewsFeed: NewsFeedData) {
         wireframe.navigateToNewsDetails(newsFeedData: selectedNewsFeed)
     }
 }
-
-
 // MARK: - Wireframe to Presenter Interface
 extension NewsFeedPresenter: NewsFeedWireframeToPresenterInterface {
         func set(delegate newDelegate: NewsFeedDelegate?) {

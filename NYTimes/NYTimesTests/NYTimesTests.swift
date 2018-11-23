@@ -24,12 +24,12 @@ class NYTimesTests: XCTestCase {
 
     func testValidCallToNYTimesMostPopularGetsHTTPStatusCode200() {
         //Moking the full url with correct key
-        let url = URL(string: "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/7.json?api-key=e9b112eac69f44329a66227e25d48cf6")
+        let baseURL = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/"
+        let url = URL(string: "\(baseURL)7.json?api-key=e9b112eac69f44329a66227e25d48cf6")
         // 1
         let promise = expectation(description: "Status code: 200")
-        
         // when
-        let dataTask = testingSession.dataTask(with: url!) { data, response, error in
+        let dataTask = testingSession.dataTask(with: url!) { _, response, error in
             // then
             if let error = error {
                 XCTFail("Error: \(error.localizedDescription)")
@@ -47,8 +47,7 @@ class NYTimesTests: XCTestCase {
         // 3
         waitForExpectations(timeout: 10, handler: nil)
     }
-    
-    func testSectionsExistWithMinijmumOneSectionAvailable(){
+    func testSectionsExistWithMinijmumOneSectionAvailable() {
         let sections = NewsFeedSectionsManager().newsFeedSections
         XCTAssertNotNil(sections)
         if let sections = sections {

@@ -5,15 +5,15 @@ class NewsFeedWireframe {
     lazy var moduleInteractor = NewsFeedInteractor()
 
     lazy var moduleNavigationController: UINavigationController = {
-            let sb = NewsFeedWireframe.storyboard()
-            let nc = (sb.instantiateViewController(withIdentifier: NewsFeedConstants.navigationControllerIdentifier) as? UINavigationController)!
-            return nc
+            let storyboard = NewsFeedWireframe.storyboard()
+            let navigationController = (storyboard.instantiateViewController(withIdentifier:
+                NewsFeedConstants.navigationControllerIdentifier) as? UINavigationController)!
+            return navigationController
     }()
-    
     lazy var modulePresenter = NewsFeedPresenter()
     lazy var moduleView: NewsFeedView = {
-            let vc = self.moduleNavigationController.viewControllers[0] as! NewsFeedView
-            return vc
+            let view = self.moduleNavigationController.viewControllers[0] as? NewsFeedView
+            return view!
     }()
 
     // MARK: - Computed VIPER Variables
@@ -21,20 +21,20 @@ class NewsFeedWireframe {
     lazy var view: NewsFeedNavigationInterface = self.moduleView
 
     // MARK: - Instance Variables
-    var newsDetailsWireframe:NewsDetailsWireframe?
+    var newsDetailsWireframe: NewsDetailsWireframe?
     // MARK: - Initialization
     init() {
-        let i = moduleInteractor
-        let p = modulePresenter
-        let v = moduleView
+        let interactor = moduleInteractor
+        let presenter = modulePresenter
+        let view = moduleView
 
-        i.presenter = p
+        interactor.presenter = presenter
 
-        p.interactor = i
-        p.view = v
-        p.wireframe = self
+        presenter.interactor = interactor
+        presenter.view = view
+        presenter.wireframe = self
 
-        v.presenter = p
+        view.presenter = presenter
     }
 
     class func storyboard() -> UIStoryboard {
@@ -60,7 +60,7 @@ extension NewsFeedWireframe: NewsFeed {
 
 // MARK: - Presenter to Wireframe Interface
 extension NewsFeedWireframe: NewsFeedPresenterToWireframeInterface {
-    func navigateToNewsDetails(newsFeedData:NewsFeedData){
+    func navigateToNewsDetails(newsFeedData: NewsFeedData) {
         if newsDetailsWireframe != nil {
             newsDetailsWireframe = nil
         }

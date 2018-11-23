@@ -1,15 +1,15 @@
 import Foundation
 
-enum NewsPeriod:String {
-    case Day = "1"
-    case Week = "7"
-    case Month = "30"
+enum NewsPeriod: String {
+    case day = "1"
+    case week = "7"
+    case month = "30"
 }
 
 enum NewsFeedFetchError {
-    case Unexpected
-    case Parsing
-    case BadRequest
+    case unexpected
+    case parsing
+    case badRequest
 }
 
 class NewsFeedInteractor {
@@ -24,11 +24,12 @@ class NewsFeedInteractor {
 
 // MARK: - Presenter To Interactor Interface
 extension NewsFeedInteractor: NewsFeedPresenterToInteractorInterface {
-    func fetchNewsFeedForPeriod(period:NewsPeriod, section:String){
+    func fetchNewsFeedForPeriod(period: NewsPeriod, section: String) {
         //TODO: should check internet reachability and return fail if there is no internet connection
         guard let gitUrl = URL(string: APIsURLs.NYTimesAPIBaseURL +
-            section + "/" + period.rawValue + ".json?" + APIsParamaeters.NYTimesAPIKey + "=" + APIsParamaeters.NYTimesAPIValue) else {
-                self.presenter.fetchNewsFailedWithError(fetchError: .Unexpected)
+            section + "/" + period.rawValue + ".json?" + APIsParamaeters.NYTimesAPIKey +
+            "=" + APIsParamaeters.NYTimesAPIValue) else {
+                self.presenter.fetchNewsFailedWithError(fetchError: .unexpected)
                 return
         }
         let request = NSMutableURLRequest(url: gitUrl)
@@ -36,32 +37,32 @@ extension NewsFeedInteractor: NewsFeedPresenterToInteractorInterface {
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
         //use shared sesiion as it is a simple web service calling with default configuratins
-        _ = session.dataTask(with: request as URLRequest) { data, response, error in
+        _ = session.dataTask(with: request as URLRequest) { data, response, _ in
             guard let data = data else {
                 DispatchQueue.main.async {//call main thread to handle response
-                    self.presenter.fetchNewsFailedWithError(fetchError: .Unexpected)
+                    self.presenter.fetchNewsFailedWithError(fetchError: .unexpected)
                 }
                 return
             }
             do {//try to parse the response
                 let newsFeedEntity = try JSONDecoder().decode(NewsFeedEntity.self, from: data)
-                if let httpURLResponse = response as? HTTPURLResponse {
-                    if (httpURLResponse.statusCode == 200){
-                        DispatchQueue.main.async {//call main thread to handle response
-                            self.presenter.fetchNewsSuccess(newsFeedEntity: newsFeedEntity)
-                        }
-                    }
+                guard let httpURLResponse =  response as? HTTPURLResponse else {
+                    self.presenter.fetchNewsFailedWithError(fetchError: .badRequest)
+                    return
                 }
-                else{
+                if httpURLResponse.statusCode == 200 {
                     DispatchQueue.main.async {//call main thread to handle response
-                        self.presenter.fetchNewsFailedWithError(fetchError: .BadRequest)
+                        self.presenter.fetchNewsSuccess(newsFeedEntity: newsFeedEntity)
+                    }
+                } else {
+                    DispatchQueue.main.async {//call main thread to handle response
+                        self.presenter.fetchNewsFailedWithError(fetchError: .badRequest)
                     }
                 }
             } catch let err {//This is where we catch the parsing error
                 DispatchQueue.main.async { //call main thread to handle response
-                    self.presenter.fetchNewsFailedWithError(fetchError: .Parsing)
+                    self.presenter.fetchNewsFailedWithError(fetchError: .parsing)
                 }
                 print("Err", err)
             }

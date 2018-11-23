@@ -9,13 +9,11 @@
 import UIKit
 
 class RootWireframe {
-    var newsFeedWireframe:NewsFeedWireframe!
-    
-    func rootNavigationController()-> UINavigationController {
+    var newsFeedWireframe: NewsFeedWireframe!
+    func rootNavigationController() -> UINavigationController {
         if newsFeedWireframe == nil {
             newsFeedWireframe = NewsFeedWireframe()
         }
         return newsFeedWireframe.moduleNavigationController
     }
 }
-

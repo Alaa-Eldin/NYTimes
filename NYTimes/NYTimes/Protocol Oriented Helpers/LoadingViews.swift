@@ -14,6 +14,6 @@ protocol Loadable {
 }
 
 //TODO: I will do it when I have time
-extension Loadable where Self:UIViewController {
+extension Loadable where Self: UIViewController {
 //    let activityIndicator = UIac
 }

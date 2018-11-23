@@ -9,9 +9,9 @@
 import Foundation
 
 class NewsFeedSectionsManager {
-    var newsFeedSections:[NewsFeedSection]?
+    var newsFeedSections: [NewsFeedSection]?
 
-    init(){
+    init() {
         if let pathURL = Bundle.main.url(forResource: "Sections", withExtension: "plist") {
             do {
                 let data = try Data(contentsOf: pathURL)
@@ -24,7 +24,7 @@ class NewsFeedSectionsManager {
     }
 }
 
-struct NewsFeedSection:Codable {
-    let Name:String
-    let key:String
+struct NewsFeedSection: Codable {
+    let name: String
+    let key: String
 }

@@ -8,12 +8,10 @@
 
 // VIPER Interface to the Module
 protocol NewsDetailsDelegate: class {
-    
 }
 
 // VIPER Interface for communication from Interactor -> Presenter
 protocol NewsDetailsInteractorToPresenterInterface: class {
-    
 }
 
 // VIPER Interface for communication from View -> Presenter
@@ -26,13 +24,9 @@ protocol NewsDetailsWireframeToPresenterInterface: class {
     var delegate: NewsDetailsDelegate? { get }
     func set(delegate newDelegate: NewsDetailsDelegate?)
 }
-
-
 // VIPER Interface for communication from Presenter to Interactor
 protocol NewsDetailsPresenterToInteractorInterface: class {
-    
 }
-
 // VIPER Module Constants
 struct NewsDetailsConstants {
     // Uncomment to utilize a navigation contoller from storyboard
@@ -48,17 +42,15 @@ protocol NewsDetails: class {
 
 // VIPER Interface for communication from Presenter -> Wireframe
 protocol NewsDetailsPresenterToWireframeInterface: class {
-    
 }
 
 // VIPER Interface for manipulating the navigation of the view
 protocol NewsDetailsNavigationInterface: class {
-    
 }
 
 // VIPER Interface for communication from Presenter -> View
 protocol NewsDetailsPresenterToViewInterface: class {
-    func showNewsImageFrom(imageURL:String)
-    func showNewsTitle(title:String)
-    func showNewsDetails(newsDetails:String)
+    func showNewsImageFrom(imageURL: String)
+    func showNewsTitle(title: String)
+    func showNewsDetails(newsDetails: String)
 }

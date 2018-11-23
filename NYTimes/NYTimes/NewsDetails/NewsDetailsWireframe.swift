@@ -3,13 +3,11 @@ import UIKit
 class NewsDetailsWireframe {
         // MARK: - VIPER Stack
         lazy var moduleInteractor = NewsDetailsInteractor()
- 
         lazy var modulePresenter = NewsDetailsPresenter()
         lazy var moduleView: NewsDetailsView = {
-
-                let sb = NewsDetailsWireframe.storyboard()
-                let vc = (sb.instantiateViewController(withIdentifier: NewsDetailsConstants.viewIdentifier) as? NewsDetailsView)!
-                return vc
+            let storyboard = NewsDetailsWireframe.storyboard()
+            let view = storyboard.instantiateViewController(withIdentifier: NewsDetailsConstants.viewIdentifier)
+                return (view as? NewsDetailsView)!
         }()
 
         // MARK: - Computed VIPER Variables
@@ -19,17 +17,17 @@ class NewsDetailsWireframe {
         // MARK: - Instance Variables
 
         // MARK: - Initialization
-    init(newsFeedInfo:NewsFeedData) {
-        let i = moduleInteractor
-        let p = modulePresenter
-        let v = moduleView
+    init(newsFeedInfo: NewsFeedData) {
+        let interactor = moduleInteractor
+        let presenter = modulePresenter
+        let view = moduleView
 
-        i.presenter = p
-        p.interactor = i
-        p.view = v
-        p.wireframe = self
-        v.presenter = p
-        p.newsFeedInfo = newsFeedInfo
+        interactor.presenter = presenter
+        presenter.interactor = interactor
+        presenter.view = view
+        presenter.wireframe = self
+        view.presenter = presenter
+        presenter.newsFeedInfo = newsFeedInfo
     }
 
     class func storyboard() -> UIStoryboard {

@@ -7,18 +7,13 @@ class NewsDetailsPresenter {
     weak var wireframe: NewsDetailsPresenterToWireframeInterface!
 
     // MARK: - Instance Variables
-    var newsFeedInfo:NewsFeedData?
-    
+    var newsFeedInfo: NewsFeedData?
     weak var delegate: NewsDetailsDelegate?
     var moduleWireframe: NewsDetails {
-            get {
-                    let mw = (self.wireframe as? NewsDetails)!
-                    return mw
-            }
+        let wireframe = (self.wireframe as? NewsDetails)!
+        return wireframe
     }
-
     // MARK: - Operational
-
 }
 
 // MARK: - Interactor to Presenter Interface
@@ -28,7 +23,7 @@ extension NewsDetailsPresenter: NewsDetailsInteractorToPresenterInterface {
 
 // MARK: - View to Presenter Interface
 extension NewsDetailsPresenter: NewsDetailsViewToPresenterInterface {
-    func viewDidLoad(){
+    func viewDidLoad() {
         guard newsFeedInfo != nil else {
             return
         }

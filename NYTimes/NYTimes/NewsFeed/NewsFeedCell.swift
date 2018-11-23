@@ -9,13 +9,11 @@
 import UIKit
 
 class NewsFeedCell: UITableViewCell {
-    
     // MARK: - Outlets
     @IBOutlet weak var newsImageView: UIImageView!
     @IBOutlet weak var newsTitleLabel: UILabel!
     @IBOutlet weak var newsDescriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         newsImageView.layer.borderWidth = 1
