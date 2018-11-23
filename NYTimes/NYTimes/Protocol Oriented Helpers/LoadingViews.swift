@@ -13,7 +13,21 @@ protocol Loadable {
     func hideLoadingIndicator()
 }
 
-//TODO: I will do it when I have time
 extension Loadable where Self: UIViewController {
-//    let activityIndicator = UIac
+    func showLoadingIndicator() {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style =
+            UIActivityIndicatorView.Style.gray
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    func hideLoadingIndicator() {
+        for view in self.view.subviews where view is UIActivityIndicatorView {
+            (view as? UIActivityIndicatorView)?.stopAnimating()
+            view.removeFromSuperview()
+        }
+    }
 }

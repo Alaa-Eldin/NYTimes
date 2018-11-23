@@ -10,6 +10,7 @@ enum NewsFeedFetchError {
     case unexpected
     case parsing
     case badRequest
+    case noInternetConnection
 }
 
 class NewsFeedInteractor {
@@ -25,7 +26,6 @@ class NewsFeedInteractor {
 // MARK: - Presenter To Interactor Interface
 extension NewsFeedInteractor: NewsFeedPresenterToInteractorInterface {
     func fetchNewsFeedForPeriod(period: NewsPeriod, section: String) {
-        //TODO: should check internet reachability and return fail if there is no internet connection
         guard let gitUrl = URL(string: APIsURLs.NYTimesAPIBaseURL +
             section + "/" + period.rawValue + ".json?" + APIsParamaeters.NYTimesAPIKey +
             "=" + APIsParamaeters.NYTimesAPIValue) else {
@@ -38,7 +38,14 @@ extension NewsFeedInteractor: NewsFeedPresenterToInteractorInterface {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         //use shared sesiion as it is a simple web service calling with default configuratins
-        _ = session.dataTask(with: request as URLRequest) { data, response, _ in
+        _ = session.dataTask(with: request as URLRequest) { data, response, error in
+            if let error = error as NSError?, error.domain == NSURLErrorDomain &&
+                error.code == NSURLErrorNotConnectedToInternet {
+                DispatchQueue.main.async {//call main thread to handle response
+                    self.presenter.fetchNewsFailedWithError(fetchError: .noInternetConnection)
+                }
+                return
+            }
             guard let data = data else {
                 DispatchQueue.main.async {//call main thread to handle response
                     self.presenter.fetchNewsFailedWithError(fetchError: .unexpected)

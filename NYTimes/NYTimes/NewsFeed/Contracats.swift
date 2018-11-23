@@ -48,6 +48,6 @@ protocol NewsFeedNavigationInterface: class {
 }
 
 // VIPER Interface for communication from Presenter -> View
-protocol NewsFeedPresenterToViewInterface: class, Popupable {
+protocol NewsFeedPresenterToViewInterface: class, Popupable, Loadable {
     func showMostPopularNews(newsFeedData: [NewsFeedData])
 }

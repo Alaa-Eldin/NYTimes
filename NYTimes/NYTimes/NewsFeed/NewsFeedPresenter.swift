@@ -19,7 +19,7 @@ class NewsFeedPresenter {
     func fetchNewsFeed() {
         let allSections = sections()?[0]
         if  allSections != nil {
-            //TODO:Should show loading indicator before start fetching
+            view.showLoadingIndicator()
             interactor.fetchNewsFeedForPeriod(period: .day, section: allSections!.key)
         }
     }
@@ -28,14 +28,23 @@ class NewsFeedPresenter {
 // MARK: - Interactor to Presenter Interface
 extension NewsFeedPresenter: NewsFeedInteractorToPresenterInterface {
     func fetchNewsFailedWithError(fetchError: NewsFeedFetchError) {
-        view.showPopup(title: "Ops!", message: "Something went wrong, please try again", cancelTitle: "Ok") {
+        view.hideLoadingIndicator()
+        var errorMessage = ""
+        switch fetchError {
+        case .badRequest, .parsing, .unexpected:
+            errorMessage = "Something went wrong, please try again"
+        case .noInternetConnection:
+            errorMessage = "Please make sure you have good internet connection and try again"
+        }
+        view.showPopup(title: "Ops!", message: errorMessage, cancelTitle: "Ok") {
             //try to fetch again
-            //TODO:Should show loading indicator before start fetching
+            self.view.showLoadingIndicator()
             self.fetchNewsFeed()
         }
     }
     func fetchNewsSuccess(newsFeedEntity: NewsFeedEntity) {
         if let newsFeedData = newsFeedEntity.results {
+            view.hideLoadingIndicator()
             view.showMostPopularNews(newsFeedData: newsFeedData)
         }
     }
