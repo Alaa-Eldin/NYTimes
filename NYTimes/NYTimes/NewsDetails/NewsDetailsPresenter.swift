@@ -37,7 +37,4 @@ extension NewsDetailsPresenter: NewsDetailsViewToPresenterInterface {
 
 // MARK: - Wireframe to Presenter Interface
 extension NewsDetailsPresenter: NewsDetailsWireframeToPresenterInterface {
-        func set(delegate newDelegate: NewsDetailsDelegate?) {
-                delegate = newDelegate
-        }
 }

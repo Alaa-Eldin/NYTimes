@@ -41,14 +41,6 @@ class NewsDetailsWireframe {
 
 // MARK: - Module Interface
 extension NewsDetailsWireframe: NewsDetails {
-        var delegate: NewsDetailsDelegate? {
-                get {
-                        return presenter.delegate
-                }
-                set {
-                        presenter.set(delegate: newValue)
-                }
-        }
 }
 
 // MARK: - Presenter to Wireframe Interface

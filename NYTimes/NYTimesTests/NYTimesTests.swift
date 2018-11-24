@@ -12,9 +12,11 @@ import XCTest
 class NYTimesTests: XCTestCase {
 
     var testingSession: URLSession!
-
+    var newsWireFrame: NewsFeedWireframe!
     override func setUp() {
         testingSession = URLSession(configuration: URLSessionConfiguration.default)
+        newsWireFrame = NewsFeedWireframe()
+        newsWireFrame.moduleView.loadViewIfNeeded()
     }
 
     override func tearDown() {
@@ -54,12 +56,47 @@ class NYTimesTests: XCTestCase {
             XCTAssertTrue(sections.count > 0)
         }
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testTableViewIsInNewsViewController() {
+        newsWireFrame.moduleView.loadViewIfNeeded()
+        XCTAssertNotNil(newsWireFrame.moduleView.newsTableView,
+                        "Controller should have a news tableview")
     }
-
+    func testNewsTableViewCellsCount() {
+        let news = NewsFeedData(title: "Great title", publishedDate: "10/10/2019",
+                                identifier: 3000, abstract: "that was a great news to announce", media: nil)
+        let news1 = NewsFeedData(title: "Great title 1", publishedDate: "11/10/2019",
+                                 identifier: 3001, abstract: "that was a great news to announce", media: nil)
+        let news2 = NewsFeedData(title: "Great title 2", publishedDate: "12/10/2019",
+                                 identifier: 3002, abstract: "that was a great news to announce 2", media: nil)
+        let news3 = NewsFeedData(title: "Great title 3", publishedDate: "13/10/2019",
+                                 identifier: 3003, abstract: "that was a great news to announce 3", media: nil)
+        let news4 = NewsFeedData(title: "Great title 4", publishedDate: "14/10/2019",
+                                 identifier: 3004, abstract: "that was a great news to announce 4", media: nil)
+        let newsTableView = newsWireFrame.moduleView.newsTableView
+        newsTableView?.dataSource = newsWireFrame.moduleView
+        newsWireFrame.moduleView.newsFeedsData = [news, news1, news2, news3, news4]
+        let numberOfRows = newsWireFrame.moduleView.tableView(newsTableView!, numberOfRowsInSection: 0)
+        XCTAssertEqual(numberOfRows, 5,
+                       "Number of rows in table should match number of given news which is 5")
+    }
+    func testNewsTableViewCells() {
+        let news = NewsFeedData(title: "Great title", publishedDate: "10/10/2019",
+                                identifier: 3000, abstract: "that was a great news to announce", media: nil)
+        let news1 = NewsFeedData(title: "Great title 1", publishedDate: "11/10/2019",
+                                 identifier: 3001, abstract: "that was a great news to announce", media: nil)
+        let news2 = NewsFeedData(title: "Great title 2", publishedDate: "12/10/2019",
+                                 identifier: 3002, abstract: "that was a great news to announce 2", media: nil)
+        let news3 = NewsFeedData(title: "Great title 3", publishedDate: "13/10/2019",
+                                 identifier: 3003, abstract: "that was a great news to announce 3", media: nil)
+        let news4 = NewsFeedData(title: "Great title 4", publishedDate: "14/10/2019",
+                                 identifier: 3004, abstract: "that was a great news to announce 4", media: nil)
+        let newsTableView = newsWireFrame.moduleView.newsTableView
+        newsTableView?.dataSource = newsWireFrame.moduleView
+        newsWireFrame.moduleView.newsFeedsData = [news, news1, news2, news3, news4]
+        newsWireFrame.moduleView.showMostPopularNews(newsFeedData: newsWireFrame.moduleView.newsFeedsData)
+        let firstRow = newsWireFrame.moduleView.tableView(newsTableView!, cellForRowAt:
+            IndexPath(row: 0, section: 0)) as? NewsFeedCell
+        XCTAssertEqual(firstRow?.dateLabel.text, "10/10/2019",
+                       "shown Date at the first row should be as the expected 10/10/2019")
+    }
 }

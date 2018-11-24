@@ -21,8 +21,6 @@ protocol NewsDetailsViewToPresenterInterface: class {
 
 // VIPER Interface for communication from Wireframe -> Presenter
 protocol NewsDetailsWireframeToPresenterInterface: class {
-    var delegate: NewsDetailsDelegate? { get }
-    func set(delegate newDelegate: NewsDetailsDelegate?)
 }
 // VIPER Interface for communication from Presenter to Interactor
 protocol NewsDetailsPresenterToInteractorInterface: class {
@@ -37,7 +35,6 @@ struct NewsDetailsConstants {
 
 // Interface Abstraction for working with the VIPER Module
 protocol NewsDetails: class {
-    var delegate: NewsDetailsDelegate? { get set }
 }
 
 // VIPER Interface for communication from Presenter -> Wireframe

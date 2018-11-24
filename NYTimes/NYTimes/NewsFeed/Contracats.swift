@@ -8,7 +8,6 @@
 
 // Interface Abstraction for working with the VIPER Module
 protocol NewsFeed: class {
-    var delegate: NewsFeedDelegate? { get set }
 }
 
 // VIPER Interface for communication from Presenter to Interactor

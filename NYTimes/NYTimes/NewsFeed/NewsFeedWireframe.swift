@@ -48,14 +48,6 @@ class NewsFeedWireframe {
 
 // MARK: - Module Interface
 extension NewsFeedWireframe: NewsFeed {
-        var delegate: NewsFeedDelegate? {
-                get {
-                        return presenter.delegate
-                }
-                set {
-                        presenter.set(delegate: newValue)
-                }
-        }
 }
 
 // MARK: - Presenter to Wireframe Interface
