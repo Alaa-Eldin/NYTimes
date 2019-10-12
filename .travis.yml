@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode11.0
+xcode_project: NYTimes.xcodeproj
+xcode_scheme: NYTimes
+xcode_sdk: iphoneos13.0
