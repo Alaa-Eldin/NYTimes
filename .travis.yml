@@ -1,5 +1,5 @@
 language: objective-c
 osx_image: xcode11.2
-xcode_project: NYTimes.xcodeproj
+xcode_project: NYTimes/NYTimes.xcodeproj
 xcode_scheme: NYTimes
 xcode_sdk: iphonesimulator13.2
