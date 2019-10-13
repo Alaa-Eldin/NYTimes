@@ -2,4 +2,5 @@ language: objective-c
 osx_image: xcode11.2
 xcode_project: NYTimes/NYTimes.xcodeproj
 xcode_scheme: NYTimes
+xcode_destination: platform=iOS Simulator,OS=13.2,,name=iPhone X
 xcode_sdk: iphonesimulator13.2
